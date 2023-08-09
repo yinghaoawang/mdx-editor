@@ -4,6 +4,11 @@ import path from 'node:path'
 const packageJson = JSON.parse(fs.readFileSync('./package.json', 'utf-8'))
 
 const newExports = {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
     "./package.json": "./package.json",
     "./style.css": "./dist/style.css",
 }
@@ -19,8 +24,9 @@ const additionalExports = [
 
 additionalExports.forEach(exp => { 
   newExports[`./${exp}`] = {
-    import:  `./dist/${exp}.js`,
     types: `./dist/${exp}.d.ts`,
+    import:  `./dist/${exp}.js`,
+    default: `./dist/${exp}.js`,
   }
 })
 
@@ -30,6 +36,7 @@ function addFileExports(dirName) {
     newExports[`./${dirName}/${name}`] = {
       types: `./dist/${dirName}/${name}.d.ts`,
       import: `./dist/${dirName}/${name}.js`,
+      default: `./dist/${dirName}/${name}.js`,
     }
   })
 }
@@ -38,7 +45,8 @@ function addFileExports(dirName) {
 fs.readdirSync('./src/plugins').forEach(dirName => {
   newExports[`./plugins/${dirName}`] = {
     types: `./dist/plugins/${dirName}/index.d.ts`,
-    import: `./dist/plugins/${dirName}/index.js`
+    import: `./dist/plugins/${dirName}/index.js`,
+    default: `./dist/plugins/${dirName}/index.js`
   }
 })
 

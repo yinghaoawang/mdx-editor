@@ -30,6 +30,7 @@ export default defineConfig({
     react(IN_LADLE ? {} : { jsxRuntime: 'classic' } as const),
     dts({
       rollupTypes: false,
+      staticImport: true,
       compilerOptions: {
         skipLibCheck: true,
       },
