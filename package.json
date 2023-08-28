@@ -16,6 +16,7 @@
     "build:docs:api": "./scripts/build_docs_api.sh",
     "build:update-exports": "node ./scripts/generate-exports.js",
     "start": "LADLE=true ladle dev",
+    "start:vite": "vite dev",
     "dev": "LADLE=true ladle dev",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src --ext .ts,.tsx",
