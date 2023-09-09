@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { always, tap } from '../utils/fp'
+import React from 'react'
+import { always, call, tap } from '../utils/fp'
 import { RealmNode } from './realm'
 
 import {
@@ -131,7 +131,7 @@ const GurxContext = React.createContext(undefined)
  * @param Root - The optional React component to render. By default, the resulting component renders nothing, acting as a logical wrapper for its children.
  * @returns an object containing the following:
  *  - `Component`: the React component.
- *  - `useEmitterValue`: a hook that lets child components use values emitted from the specified output stream.
+ *  - `useEmitterValues`: a hook that lets child components use values emitted from the specified output stream.
  *  - `useEmitter`: a hook that calls the provided callback whenever the specified stream emits a value.
  *  - `usePublisher`: a hook which lets child components publish values to the specified stream.
  *  <hr />
@@ -250,33 +250,12 @@ export function sysHooks<Sys extends System>() {
    */
   const useEmitterValues = <K extends SystemKeys<Sys>>(...keys: K) => {
     const realm = React.useContext(Context)!
-    const [values, setValues] = React.useState(() => realm.getKeyValues(keys))
+    const cache = React.useMemo(createCacheLastValue, [])
 
-    useEffect(
-      () =>
-        realm?.subKeys(keys, (newValues) => {
-          const setter = () => {
-            if (keys.length === 1) {
-              // @ts-expect-error the duality should be fixed with correct subscription mode
-              newValues = [newValues]
-            }
-
-            for (let i = 0; i < keys.length; i++) {
-              if (newValues[i] !== values[i]) {
-                setValues(newValues)
-              }
-            }
-            // this fixes the dual behavior in sub where subSingle and subMultiple fight
-            // console.log('setting values', keys.length === 1 ? [newValues] : newValues)
-            // setTimeout(() => {})
-          }
-
-          setter()
-        }),
-      [keys, realm, values]
+    return React.useSyncExternalStore(
+      (callback) => realm.subKeys(keys, callback),
+      () => cache(realm.getKeyValues(keys))
     )
-
-    return values
   }
 
   const usePubKeys = () => {
@@ -417,4 +396,18 @@ export function useHasPlugin(id: string) {
 /** @internal */
 export const RequirePlugin: React.FC<{ id: string; children: React.ReactNode }> = ({ id, children }) => {
   return useHasPlugin(id) ? React.createElement(React.Fragment, {}, children) : null
+}
+
+function arraysAreEqual<T extends unknown[]>(a: T, b: T) {
+  return a.length === b.length && a.every((v, i) => v === b[i])
+}
+
+function createCacheLastValue<T extends unknown[]>() {
+  let lastValue: null | T = null
+  return function (newValue: T) {
+    if (lastValue === null || !arraysAreEqual(lastValue, newValue)) {
+      lastValue = newValue
+    }
+    return lastValue
+  }
 }
