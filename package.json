@@ -15,6 +15,7 @@
     "build": "vite build",
     "build:docs:api": "./scripts/build_docs_api.sh",
     "build:update-exports": "node ./scripts/generate-exports.js",
+    "prepare": "npm run build & npm run build:docs:api & npm run build:update-exports",
     "start": "LADLE=true ladle dev",
     "dev": "LADLE=true ladle dev",
     "typecheck": "tsc --noEmit",
