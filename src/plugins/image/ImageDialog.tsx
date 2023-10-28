@@ -52,13 +52,13 @@ export const ImageDialog: React.FC = () => {
             }}
             className={styles.multiFieldForm}
           >
-            <div className={styles.formField}>
+            {/* <div className={styles.formField}>
               <label htmlFor="file">Upload an image from your device:</label>
               <input type="file" {...register('file')} />
-            </div>
+            </div> */}
 
             <div className={styles.formField}>
-              <label htmlFor="src">Or add an image from an URL:</label>
+              <label htmlFor="src">Add an image from an URL:</label>
               <DownshiftAutoComplete
                 initialInputValue={state.type === 'editing' ? state.initialValues.src || '' : ''}
                 inputName="src"
@@ -69,7 +69,7 @@ export const ImageDialog: React.FC = () => {
               />
             </div>
 
-            <div className={styles.formField}>
+            {/* <div className={styles.formField}>
               <label htmlFor="alt">Alt:</label>
               <input type="text" {...register('altText')} className={styles.textInput} />
             </div>
@@ -77,7 +77,7 @@ export const ImageDialog: React.FC = () => {
             <div className={styles.formField}>
               <label htmlFor="title">Title:</label>
               <input type="text" {...register('title')} className={styles.textInput} />
-            </div>
+            </div> */}
 
             <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 'var(--spacing-2)' }}>
               <button type="submit" title="Save" aria-label="Save" className={classNames(styles.primaryButton)}>
