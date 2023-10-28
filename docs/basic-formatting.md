@@ -14,8 +14,8 @@ The Headings plugin enables the usage of markdown headings which translate to `H
 
 ```tsx
 
-import { MDXEditor } from '@mdxeditor/editor/MDXEditor'
-import { headingsPlugin } from '@mdxeditor/editor/plugins/headings'
+import { MDXEditor } from '@alan/editor/MDXEditor'
+import { headingsPlugin } from '@alan/editor/plugins/headings'
 
 //...
 <MDXEditor markdown='# Hello world' plugins={[headingsPlugin()]} />
@@ -27,8 +27,8 @@ The Quote plugin enables the usage of quotes which translate to `blockquote` in 
 
 ```tsx
 
-import { MDXEditor } from '@mdxeditor/editor/MDXEditor'
-import { quotePlugin } from '@mdxeditor/editor/plugins/quote'
+import { MDXEditor } from '@alan/editor/MDXEditor'
+import { quotePlugin } from '@alan/editor/plugins/quote'
 
 const markdown = "> This is a quote"
 
@@ -42,8 +42,8 @@ The Lists plugin enables the usage of ordered and unordered lists, including mul
 
 ```tsx
 
-import { MDXEditor } from '@mdxeditor/editor/MDXEditor'
-import { listsPlugin } from '@mdxeditor/editor/plugins/lists'
+import { MDXEditor } from '@alan/editor/MDXEditor'
+import { listsPlugin } from '@alan/editor/plugins/lists'
 
 const markdown = `
   * Item 1
@@ -64,8 +64,8 @@ const markdown = `
 The Thematic Break plugin enables the usage of thematic breaks which translate to `hr` in HTML.
 
 ```tsx
-import { MDXEditor } from '@mdxeditor/editor/MDXEditor'
-import { thematicBreakPlugin } from '@mdxeditor/editor/plugins/thematic-break'
+import { MDXEditor } from '@alan/editor/MDXEditor'
+import { thematicBreakPlugin } from '@alan/editor/plugins/thematic-break'
 
 const markdown = `
 Hello

@@ -1,5 +1,5 @@
 /**
- * The `@mdxeditor/editor` package exports the MDXEditor React component and a set of plugins and pre-made components for custom editing/editor chrome.
+ * The `@alan/editor` package exports the MDXEditor React component and a set of plugins and pre-made components for custom editing/editor chrome.
  * @packageDocumentation
  */
 import './styles/globals.css'

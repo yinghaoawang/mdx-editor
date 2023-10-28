@@ -1,7 +1,9 @@
+# Alan's Forked MDXEditor
+
 # MDXEditor
 
-![npm](https://img.shields.io/npm/v/@mdxeditor/editor)
-![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@mdxeditor/editor)
+![npm](https://img.shields.io/npm/v/@alan/editor)
+![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@alan/editor)
 
 > Because markdown editing can be even more delightful.
 
@@ -9,7 +11,7 @@ MDXEditor is an open-source React component that allows users to author markdown
 The component supports the core markdown syntax and certain extensions, including tables, images, code blocks, etc. It also allows users to edit JSX components with a built-in JSX editor or a custom one.
 
 ```jsx
-import {MDXEditor, headingsPlugin()} from '@mdxeditor/editor';
+import {MDXEditor, headingsPlugin()} from '@alan/editor';
 
 export default function App() {
   return <MDXEditor markdown={'# Hello World'} plugins={[headingsPlugin()]} />;

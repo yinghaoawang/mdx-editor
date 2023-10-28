@@ -10,10 +10,10 @@ You've decided to give MDXEditor a try? That's great, because it does not take a
 
 ## Installation
 
-To use MDXEditor to your project, install the `@mdxeditor/editor` NPM package in your React project:
+To use MDXEditor to your project, install the `@alan/editor` NPM package in your React project:
 
 ```sh
-npm install --save @mdxeditor/editor
+npm install --save @alan/editor
 ```
 
 ## Importing the component
@@ -24,7 +24,7 @@ Following are the specifics below for the most popular React frameworks.
 
 ### Next.js (App router)
 
-By default, Next.js uses `--moduleResolution node` setting in `tsconfig.json`. This means that TypeScript does not take the `exports` package.json field into account. Depending on your project, you may try to change it to `node16` or `bundler` so that you can use the named exports, which will optimize your bundle. If this is not possible, you can still use the catch all export point `@mdxeditor/editor`.
+By default, Next.js uses `--moduleResolution node` setting in `tsconfig.json`. This means that TypeScript does not take the `exports` package.json field into account. Depending on your project, you may try to change it to `node16` or `bundler` so that you can use the named exports, which will optimize your bundle. If this is not possible, you can still use the catch all export point `@alan/editor`.
 
 
 In addition, we need to ensure that the editor component is used only on the client. Given its purpose, it makes little to no sense to do server processing. To do so, we can use the `dynamic` function from Next.js. This will ensure that the component is only loaded on the client.
@@ -32,14 +32,14 @@ In addition, we need to ensure that the editor component is used only on the cli
 ```tsx
 // You can use this code in a separate component that's imported in your pages.
 'use client';
-import '@mdxeditor/editor/style.css';
+import '@alan/editor/style.css';
 import dynamic from 'next/dynamic'
 
 export const MDXEditor = dynamic(
 // preferred way
-  () => import('@mdxeditor/editor/MDXEditor').then((mod) => mod.MDXEditor), 
+  () => import('@alan/editor/MDXEditor').then((mod) => mod.MDXEditor), 
 // legacy, larger bundle
-// () => import('@mdxeditor/editor').then((mod) => mod.MDXEditor), 
+// () => import('@alan/editor').then((mod) => mod.MDXEditor), 
   { ssr: false }
 )
 ```
@@ -53,7 +53,7 @@ Next.js in pages mode seems to choke on the ESM format of the editor and one of 
 ```ts
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  transpilePackages: ['@mdxeditor/editor', 'react-diff-view'],
+  transpilePackages: ['@alan/editor', 'react-diff-view'],
   reactStrictMode: true,
   webpack: (config) => {
     // this will override the experiments
@@ -76,11 +76,11 @@ MDXEditor "just works" in Vite, assuming that you use a recent version of it. Th
 Here's a minimal example for App.tsx:
 
 ```tsx
-import '@mdxeditor/editor/style.css'
+import '@alan/editor/style.css'
 
 // importing the editor and the plugin from their full paths
-import { MDXEditor } from '@mdxeditor/editor/MDXEditor'
-import { headingsPlugin } from '@mdxeditor/editor/plugins/headings'
+import { MDXEditor } from '@alan/editor/MDXEditor'
+import { headingsPlugin } from '@alan/editor/plugins/headings'
 
 function App() {
   return (
@@ -129,11 +129,11 @@ Alternatively, to obtain the value of the editor, use the `getMarkdown` ref meth
 The editor is now working, but it's not very useful. Depending on your use case, you are will most likely need to enable a set of additional features. To ensure that the bundle size stays small, MDXEditor uses a plugin system. As a convention, each plugin is a separate export, so you can import only the ones you need. Below is an example of a few basic plugins being enabled for the editor.
 
 ```tsx
-import { MDXEditor } from '@mdxeditor/editor/MDXEditor'
-import { headingsPlugin } from '@mdxeditor/editor/plugins/headings'
-import { listsPlugin } from '@mdxeditor/editor/plugins/lists'
-import { quotePlugin } from '@mdxeditor/editor/plugins/quote'
-import { thematicBreakPlugin } from '@mdxeditor/editor/plugins/thematic-break'
+import { MDXEditor } from '@alan/editor/MDXEditor'
+import { headingsPlugin } from '@alan/editor/plugins/headings'
+import { listsPlugin } from '@alan/editor/plugins/lists'
+import { quotePlugin } from '@alan/editor/plugins/quote'
+import { thematicBreakPlugin } from '@alan/editor/plugins/thematic-break'
 
 function App() {
   return (

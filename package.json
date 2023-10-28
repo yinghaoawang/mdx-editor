@@ -1,5 +1,5 @@
 {
-  "name": "@mdxeditor/editor",
+  "name": "@alan/editor",
   "author": "Petyo Ivanov",
   "homepage": "https://mdxeditor.dev/",
   "bugs": {
@@ -15,6 +15,7 @@
     "build": "vite build",
     "build:docs:api": "./scripts/build_docs_api.sh",
     "build:update-exports": "node ./scripts/generate-exports.js",
+    "prepare": "npm run build & npm run build:update-exports",
     "start": "LADLE=true ladle dev",
     "dev": "LADLE=true ladle dev",
     "typecheck": "tsc --noEmit",
@@ -413,11 +414,6 @@
       "import": "./dist/plugins/toolbar/primitives/DialogButton.js",
       "default": "./dist/plugins/toolbar/primitives/DialogButton.js"
     },
-    "./plugins/toolbar/primitives/TooltipWrap": {
-      "types": "./dist/plugins/toolbar/primitives/TooltipWrap.d.ts",
-      "import": "./dist/plugins/toolbar/primitives/TooltipWrap.js",
-      "default": "./dist/plugins/toolbar/primitives/TooltipWrap.js"
-    },
     "./plugins/toolbar/primitives/select": {
       "types": "./dist/plugins/toolbar/primitives/select.d.ts",
       "import": "./dist/plugins/toolbar/primitives/select.js",
@@ -427,6 +423,11 @@
       "types": "./dist/plugins/toolbar/primitives/toolbar.d.ts",
       "import": "./dist/plugins/toolbar/primitives/toolbar.js",
       "default": "./dist/plugins/toolbar/primitives/toolbar.js"
+    },
+    "./plugins/toolbar/primitives/TooltipWrap": {
+      "types": "./dist/plugins/toolbar/primitives/TooltipWrap.d.ts",
+      "import": "./dist/plugins/toolbar/primitives/TooltipWrap.js",
+      "default": "./dist/plugins/toolbar/primitives/TooltipWrap.js"
     }
   }
 }

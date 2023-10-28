@@ -11,11 +11,11 @@ MDXEditor includes a toolbar plugin and a set of toolbar components that you can
 Note: Most of the components accept any properties, but some read the configuration parameters of their respective plugins. A notable exception is the DiffSourceToggleWrapper which requires its children to be the toolbar contents.
 
 ```tsx
-import '@mdxeditor/editor/style.css'
-import { MDXEditor } from '@mdxeditor/editor/MDXEditor'
-import { UndoRedo } from '@mdxeditor/editor/plugins/toolbar/components/UndoRedo'
-import { BoldItalicUnderlineToggles } from '@mdxeditor/editor/plugins/toolbar/components/BoldItalicUnderlineToggles'
-import { toolbarPlugin } from '@mdxeditor/editor/plugins/toolbar'
+import '@alan/editor/style.css'
+import { MDXEditor } from '@alan/editor/MDXEditor'
+import { UndoRedo } from '@alan/editor/plugins/toolbar/components/UndoRedo'
+import { BoldItalicUnderlineToggles } from '@alan/editor/plugins/toolbar/components/BoldItalicUnderlineToggles'
+import { toolbarPlugin } from '@alan/editor/plugins/toolbar'
 
 function App() {
   return (
