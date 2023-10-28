@@ -32,6 +32,7 @@ export type SerializedImageNode = Spread<
     title?: string
     width?: number
     height?: number
+    style?: string
     src: string
     type: 'image'
     version: 1
@@ -48,6 +49,7 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
   __title: string | undefined
   __width: 'inherit' | number
   __height: 'inherit' | number
+  __style: string | undefined
 
   static getType(): string {
     return 'image'
@@ -82,6 +84,9 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
     if (this.__height) {
       element.setAttribute('height', this.__height.toString())
     }
+    if (this.__style) {
+      element.setAttribute('style', this.__style.toString())
+    }
     return { element }
   }
 
@@ -100,6 +105,7 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
     title: string | undefined,
     width?: 'inherit' | number,
     height?: 'inherit' | number,
+    style?: string | undefined,
     key?: NodeKey
   ) {
     super(key)
@@ -108,6 +114,7 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
     this.__altText = altText
     this.__width = width || 'inherit'
     this.__height = height || 'inherit'
+    this.__style = style
   }
 
   exportJSON(): SerializedImageNode {
@@ -116,6 +123,7 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
       title: this.getTitle(),
       height: this.__height === 'inherit' ? 0 : this.__height,
       width: this.__width === 'inherit' ? 0 : this.__width,
+      style: this.getStyle(),
       src: this.getSrc(),
       type: 'image',
       version: 1
@@ -148,6 +156,10 @@ export class ImageNode extends DecoratorNode<JSX.Element> {
 
   getAltText(): string {
     return this.__altText
+  }
+
+  getStyle(): string | undefined {
+    return this.__style
   }
 
   getTitle(): string | undefined {
