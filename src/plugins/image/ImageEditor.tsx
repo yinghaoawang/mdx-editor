@@ -90,11 +90,7 @@ export function ImageEditor({ src, title, alt, nodeKey, width, height }: ImageEd
   const [selection, setSelection] = React.useState<RangeSelection | NodeSelection | GridSelection | null>(null)
   const activeEditorRef = React.useRef<LexicalEditor | null>(null)
   const [isResizing, setIsResizing] = React.useState<boolean>(false)
-  const [disableImageResize, imagePreviewHandler, readOnly] = imagePluginHooks.useEmitterValues(
-    'disableImageResize',
-    'imagePreviewHandler',
-    'readOnly'
-  )
+  const [disableImageResize, imagePreviewHandler] = imagePluginHooks.useEmitterValues('disableImageResize', 'imagePreviewHandler')
   const [imageSource, setImageSource] = React.useState<string | null>(null)
   const openEditImageDialog = imagePluginHooks.usePublisher('openEditImageDialog')
 
@@ -261,7 +257,7 @@ export function ImageEditor({ src, title, alt, nodeKey, width, height }: ImageEd
         {draggable && isFocused && !disableImageResize && (
           <ImageResizer editor={editor} imageRef={imageRef} onResizeStart={onResizeStart} onResizeEnd={onResizeEnd} />
         )}
-        {!readOnly && (
+        {disableImageResize && (
           <button
             type="button"
             className={classNames(styles.iconButton, styles.editImageButton)}
