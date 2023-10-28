@@ -257,7 +257,7 @@ export function ImageEditor({ src, title, alt, nodeKey, width, height }: ImageEd
         {draggable && isFocused && !disableImageResize && (
           <ImageResizer editor={editor} imageRef={imageRef} onResizeStart={onResizeStart} onResizeEnd={onResizeEnd} />
         )}
-        {disableImageResize && (
+        {!disableImageResize && (
           <button
             type="button"
             className={classNames(styles.iconButton, styles.editImageButton)}
