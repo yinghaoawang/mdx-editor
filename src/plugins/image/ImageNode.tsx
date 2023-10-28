@@ -16,8 +16,8 @@ import { ImageEditor } from './ImageEditor'
 
 function convertImageElement(domNode: Node): null | DOMConversionOutput {
   if (domNode instanceof HTMLImageElement) {
-    const { alt: altText, src, title, width, height } = domNode
-    const node = $createImageNode({ altText, src, title, width, height })
+    const { alt: altText, src, title, width, height, style } = domNode
+    const node = $createImageNode({ altText, src, title, width, height, style })
     return { node }
   }
   return null
@@ -211,6 +211,7 @@ export interface CreateImageNodeOptions {
   altText: string
   width?: number
   height?: number
+  style?: string
   title?: string
   key?: NodeKey
   src: string
@@ -221,8 +222,8 @@ export interface CreateImageNodeOptions {
  * @param options - The payload to create an image. The keys map to the img tag attributes.
  */
 export function $createImageNode(options: CreateImageNodeOptions): ImageNode {
-  const { altText, title, src, key, width, height } = options
-  return new ImageNode(src, altText, title, width, height, key)
+  const { altText, title, src, key, width, height, style } = options
+  return new ImageNode(src, altText, title, width, height, key, style)
 }
 
 /**
