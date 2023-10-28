@@ -16,7 +16,7 @@ export const InsertImage = React.forwardRef<HTMLButtonElement, Record<string, ne
 
   return (
     <RadixToolbar.Button className={styles.toolbarButton} ref={forwardedRef} disabled={readOnly} onClick={() => openNewImageDialog(true)}>
-      <TooltipWrap title="WInsert image">
+      <TooltipWrap title="Insert Chimage">
         <AddPhotoIcon />
       </TooltipWrap>
     </RadixToolbar.Button>
